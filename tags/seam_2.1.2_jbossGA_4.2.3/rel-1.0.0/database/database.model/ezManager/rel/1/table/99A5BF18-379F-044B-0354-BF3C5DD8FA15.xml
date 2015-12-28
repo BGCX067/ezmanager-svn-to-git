@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<object type="Table" id="99A5BF18-379F-044B-0354-BF3C5DD8FA15" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="true" imported_id="369FECEF-E34D-F29B-7828-46D2AC66C054" entitytype="" splittedTableID="" allow_type_substitution="true" minVolumes="0" expectedVolumes="0" maxVolumes="9999999" growthPercent="0" growthType="Year" normalForm="Third" adequatelyNormalized="NO" abbreviation="" oid_is_pk="false" use_default_color="true" background_color="null" foreground_color="null">
+		<name>calendar</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:55</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="property.comment.rdbms" value="" />
+		</properties>
+		<include_in_ddl value="false" />
+		<beforeDrop value="" />
+		<beforeCreate value="" />
+		<beforeAlter value="" />
+		<afterCreate value="" />
+		<afterAlter value="" />
+		<endOfScript value="" />
+		<spatial_table value="false" />
+		<oid_pk_columns />
+		<engineering should="true" />
+		<des_obj_version version="1.0" />
+		<fonts>
+			<font_object>
+				<parameter name="fo_type" value="Title" />
+				<parameter name="font_color" value="-16776961" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="1" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Column" />
+				<parameter name="font_color" value="-16777216" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Datatype" />
+				<parameter name="font_color" value="-16744448" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="PK Element" />
+				<parameter name="font_color" value="-16776961" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="FK Element" />
+				<parameter name="font_color" value="-16777216" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="UK Element" />
+				<parameter name="font_color" value="-16776961" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Not Null" />
+				<parameter name="font_color" value="-65536" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+			<font_object>
+				<parameter name="fo_type" value="Key" />
+				<parameter name="font_color" value="-16777216" />
+				<parameter name="font_name" value="Dialog" />
+				<parameter name="font_size" value="10" />
+				<parameter name="font_style" value="0" />
+			</font_object>
+		</fonts>
+		<documents />
+		<parties />
+		<changerequests />
+		<measurements />
+		<contained>
+			<object type="Column" id="E19E8C26-764B-770E-DA8B-2DA4CA4EDD16" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" imported_id="28A0FE23-589C-70DB-98E9-E288DC5F0998" use_default_color="true" background_color="null" foreground_color="null" unique="false" allownull="false" usedomainconstraints="true" is_oid="false" structured_attribute_id="" fk="false">
+				<name>calendar_id</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:54</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:54</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="ezManager" />
+					<parameter name="object.existsinrepository" value="true" />
+					<parameter name="object.property.defaultvalue" value="" />
+					<parameter name="object.property.usesdefault" value="false" />
+					<parameter name="property.comment.rdbms" value="" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<domain oid="D9941625-54E9-6506-BF70-D6356F5E4FC7" file="MyManager.scripts_Domains" />
+				<datatype dttype="packed" precision="10" scale="0" typename="NUMBER" />
+				<abbreviation />
+				<reference value="false" />
+				<logicaltype dttype="NUMERIC" oid="LOGDT019" />
+				<use value="domain" />
+				<sourcetype sort="" />
+				<computed value="false" />
+				<formula desc="" />
+				<subtypeSubstitution value="true" />
+				<restricted_substitution value="false" />
+				<security />
+				<ui_defaults readOnly="false" displayedOnReports="true" displayedOnForms="true" displayAs="Text" />
+				<eng_attribute_id eng_id="none" />
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+			<object type="Column" id="97E2558A-1EE9-2270-1788-EFA089A9C427" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" imported_id="A1A1D60B-74F4-E0C5-CC69-3BA9784D6A6E" use_default_color="true" background_color="null" foreground_color="null" unique="false" allownull="false" usedomainconstraints="true" is_oid="false" structured_attribute_id="" fk="true" beforeDrop="">
+				<name>activity_id</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:54</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:54</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="ezManager" />
+					<parameter name="object.existsinrepository" value="true" />
+					<parameter name="object.property.defaultvalue" value="" />
+					<parameter name="object.property.usesdefault" value="false" />
+					<parameter name="property.comment.rdbms" value="" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<domain oid="D9941625-54E9-6506-BF70-D6356F5E4FC7" file="MyManager.scripts_Domains" />
+				<datatype dttype="packed" precision="10" scale="0" typename="NUMBER" />
+				<abbreviation />
+				<reference value="false" />
+				<logicaltype dttype="NUMERIC" oid="LOGDT019" />
+				<use value="domain" />
+				<sourcetype sort="" />
+				<computed value="false" />
+				<formula desc="" />
+				<subtypeSubstitution value="true" />
+				<restricted_substitution value="false" />
+				<security />
+				<ui_defaults readOnly="false" displayedOnReports="true" displayedOnForms="true" displayAs="Text" />
+				<eng_attribute_id eng_id="none" />
+				<is_previous_column value="true" />
+				<associations>
+					<associated tableid="D78D68AA-2DA3-B270-2541-7CAC3B252893" indexid="512D28A2-FDC3-18C6-9EFC-64CE591DAB05" references="6A70D588-C402-7379-1D47-BA2DCF011C1B" fkassid="15E54EC0-BB8F-49B1-359A-0EDE2C6C53E1" />
+				</associations>
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+		</contained>
+		<key>
+			<object type="Index" id="96EF5A4C-5338-34FF-1608-7E909669F4FA" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" imported_id="35FCFC3C-9F04-3521-140D-CC067177A924" use_default_color="true" background_color="null" foreground_color="null" pk="true" indexstate="Primary Constraint">
+				<name>calendar_PK</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:54</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:54</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="ezManager" />
+					<parameter name="object.existsinrepository" value="true" />
+					<parameter name="property.comment.rdbms" value="" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<functional></functional>
+				<contains type="Column" sortorder="ASC">E19E8C26-764B-770E-DA8B-2DA4CA4EDD16</contains>
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+			<object type="Index" id="45B30E21-79B0-E703-B92E-64969EBC004C" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" use_default_color="true" background_color="null" foreground_color="null" pk="false" indexstate="Plain Index">
+				<name>calendar_base_activity_FK</name>
+				<comment></comment>
+				<notes></notes>
+				<alter type="created">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:55</timestamp>
+				</alter>
+				<alter type="changed">
+					<user>dotnetmobile</user>
+					<timestamp>2010-01-10 11:49:55</timestamp>
+				</alter>
+				<properties>
+					<parameter name="design.owner" value="ezManager" />
+					<parameter name="object.existsinrepository" value="true" />
+				</properties>
+				<engineering should="true" />
+				<des_obj_version version="1.0" />
+				<functional></functional>
+				<contains type="Column">97E2558A-1EE9-2270-1788-EFA089A9C427</contains>
+				<documents />
+				<parties />
+				<changerequests />
+				<measurements />
+			</object>
+		</key>
+	</object>
+</metadatadoc>

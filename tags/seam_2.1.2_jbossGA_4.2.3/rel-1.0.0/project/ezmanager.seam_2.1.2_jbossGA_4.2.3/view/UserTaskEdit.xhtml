@@ -1,0 +1,213 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="userTask" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{userTaskHome.managed ? 'Edit' : 'Add'} User task</f:facet>
+
+
+            <s:decorate id="taskTaskIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Task task id</ui:define>
+                <h:inputText id="taskTaskId"
+                       required="true"
+                       disabled="#{userTaskHome.managed}"
+                          value="#{userTaskHome.instance.id.taskTaskId}">
+                    <a:support event="onblur" reRender="taskTaskIdField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <s:decorate id="userIdentityUserIdentityIdField" template="layout/edit.xhtml">
+                <ui:define name="label">User identity user identity id</ui:define>
+                <h:inputText id="userIdentityUserIdentityId"
+                       required="true"
+                       disabled="#{userTaskHome.managed}"
+                          value="#{userTaskHome.instance.id.userIdentityUserIdentityId}">
+                    <a:support event="onblur" reRender="userIdentityUserIdentityIdField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{userTaskHome.persist}"
+                       disabled="#{!userTaskHome.wired}"
+                       rendered="#{!userTaskHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{userTaskHome.update}"
+                       rendered="#{userTaskHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{userTaskHome.remove}"
+                      immediate="true"
+                       rendered="#{userTaskHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/UserTask.xhtml"
+                rendered="#{userTaskHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty userTaskFrom ? 'UserTaskList' : userTaskFrom}.xhtml"
+                rendered="#{!userTaskHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Task *" labelClass="required">
+    <div class="association" id="taskParent">
+
+        <h:outputText value="There is no task associated with this userTask."
+                   rendered="#{userTaskHome.instance.task == null}"/>
+
+        <rich:dataTable var="_task"
+                   value="#{userTaskHome.instance.task}"
+                rendered="#{userTaskHome.instance.task != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTable">
+            <h:column>
+                <f:facet name="header">Task id</f:facet>
+                <h:outputText value="#{_task.taskId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Base status status id</f:facet>
+                <h:outputText value="#{_task.baseStatus.statusId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">End date</f:facet>
+                <h:outputText value="#{_task.endDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_task.id}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_task.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Position</f:facet>
+                <h:outputText value="#{_task.position}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Project project id</f:facet>
+                <h:outputText value="#{_task.project.projectId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_task.startDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{userTaskHome.instance.task != null ? 'changeParent' : 'selectParent'}" value="#{userTaskHome.instance.task != null ? 'Change' : 'Select'} task"
+                       view="/TaskList.xhtml">
+                <f:param name="from" value="UserTaskEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="User identity *" labelClass="required">
+    <div class="association" id="userIdentityParent">
+
+        <h:outputText value="There is no userIdentity associated with this userTask."
+                   rendered="#{userTaskHome.instance.userIdentity == null}"/>
+
+        <rich:dataTable var="_userIdentity"
+                   value="#{userTaskHome.instance.userIdentity}"
+                rendered="#{userTaskHome.instance.userIdentity != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="userIdentityTable">
+            <h:column>
+                <f:facet name="header">User identity id</f:facet>
+                <h:outputText value="#{_userIdentity.userIdentityId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_userIdentity.id}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_userIdentity.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_userIdentity.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password</f:facet>
+                <h:outputText value="#{_userIdentity.password}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{userTaskHome.instance.userIdentity != null ? 'changeParent' : 'selectParent'}" value="#{userTaskHome.instance.userIdentity != null ? 'Change' : 'Select'} userIdentity"
+                       view="/UserIdentityList.xhtml">
+                <f:param name="from" value="UserTaskEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

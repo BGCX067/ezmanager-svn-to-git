@@ -1,0 +1,188 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Task execution details</f:facet>
+
+        <s:decorate id="executedTaskId" template="layout/display.xhtml">
+            <ui:define name="label">Execution detail id</ui:define>
+            <h:outputText value="#{executedTaskHome.instance.executedTaskId}"/>
+        </s:decorate>
+
+        <s:decorate id="totalHours" template="layout/display.xhtml">
+            <ui:define name="label">Total hours</ui:define>
+            <h:outputText value="#{executedTaskHome.instance.totalHours}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="executedBy" template="layout/display.xhtml">
+            <ui:define name="label">Executed by</ui:define>
+            <h:outputText value="#{executedTaskHome.instance.userIdentity.name}"/>
+        </s:decorate>
+
+        <s:decorate id="startDate" template="layout/display.xhtml">
+            <ui:define name="label">Start date</ui:define>
+            <h:outputText value="#{executedTaskHome.instance.startDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+        <s:decorate id="endDate" template="layout/display.xhtml">
+            <ui:define name="label">End date</ui:define>
+            <h:outputText value="#{executedTaskHome.instance.endDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="amount" template="layout/display.xhtml">
+            <ui:define name="label">Amount</ui:define>
+            <h:outputText value="#{executedTaskHome.instance.amount}">
+                <f:convertNumber/>
+            </h:outputText>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/ExecutedTaskEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty executedTaskFrom ? 'ExecutedTaskList' : executedTaskFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Task</h:panelGroup>
+        </f:facet>
+    <div class="association" id="taskParent">
+
+        <h:outputText value="There is no task associated with this execution detail"
+                   rendered="#{executedTaskHome.instance.task == null}"/>
+
+        <rich:dataTable var="_task"
+                   value="#{executedTaskHome.instance.task}"
+                rendered="#{executedTaskHome.instance.task != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="taskTable">
+            <h:column>
+                <f:facet name="header">Task id</f:facet>
+                <h:outputText value="#{_task.taskId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task name</f:facet>
+                <h:outputText value="#{_task.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Project name</f:facet>
+                <h:outputText value="#{_task.project.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task status</f:facet>
+                <h:outputText value="#{_task.baseStatus.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Task position</f:facet>
+                <h:outputText value="#{_task.position}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewtask"
+                     value="View"
+                      view="/Task.xhtml">
+                    <f:param name="taskTaskId"
+                           value="#{_task.taskId}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Invoices</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="invoicesChildren">
+
+        <h:outputText value="There are no invoices associated with this execution detail."
+                   rendered="#{empty executedTaskHome.invoices}"/>
+
+        <rich:dataTable value="#{executedTaskHome.invoices}"
+                       var="_invoice"
+                  rendered="#{not empty executedTaskHome.invoices}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="invoicesTable">
+            <rich:column sortBy="#{_invoice.invoiceId}">
+                <f:facet name="header">Invoice id</f:facet>
+                <h:outputText value="#{_invoice.invoiceId}"/>
+            </rich:column>
+            <rich:column sortBy="#{_invoice.position}">
+                <f:facet name="header">Position</f:facet>
+                <h:outputText value="#{_invoice.position}"/>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectinvoice"
+                     value="Select"
+                      view="/Invoice.xhtml">
+                    <f:param name="invoiceInvoiceId"
+                            value="#{_invoice.invoiceId}"/>
+                    <f:param name="invoiceFrom" value="ExecutedTask"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add invoice"
+                view="/InvoiceEdit.xhtml">
+            <f:param name="executedTaskExecutedTaskId"
+                    value="#{executedTaskHome.instance.executedTaskId}"/>
+            <f:param name="invoiceFrom" value="ExecutedTask"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,281 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">Task Details</f:facet>
+
+        <s:decorate id="taskId" template="layout/display.xhtml">
+            <ui:define name="label">Task id</ui:define>
+            <h:outputText value="#{taskHome.instance.taskId}"/>
+        </s:decorate>
+
+        <s:decorate id="name" template="layout/display.xhtml">
+            <ui:define name="label">Name</ui:define>
+            <h:outputText value="#{taskHome.instance.name}"/>
+        </s:decorate>
+
+        <s:decorate id="status" template="layout/display.xhtml">
+            <ui:define name="label">Status</ui:define>
+            <h:outputText value="#{taskHome.instance.baseStatus.name}"/>
+        </s:decorate>
+
+        <s:decorate id="startDate" template="layout/display.xhtml">
+            <ui:define name="label">Start date</ui:define>
+            <h:outputText value="#{taskHome.instance.startDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+        <s:decorate id="endDate" template="layout/display.xhtml">
+            <ui:define name="label">End date</ui:define>
+            <h:outputText value="#{taskHome.instance.endDate}">
+                <s:convertDateTime type="date" dateStyle="short"/>
+            </h:outputText>
+        </s:decorate>
+
+        <s:decorate id="position" template="layout/display.xhtml">
+            <ui:define name="label">Position</ui:define>
+            <h:outputText value="#{taskHome.instance.position}"/>
+        </s:decorate>
+
+        <s:decorate id="projectId" template="layout/display.xhtml">
+            <ui:define name="label">Project id</ui:define>
+            <h:outputText value="#{taskHome.instance.project.projectId}"/>
+        </s:decorate>
+
+        <s:decorate id="projectName" template="layout/display.xhtml">
+            <ui:define name="label">Project</ui:define>
+            <h:outputText value="#{taskHome.instance.project.name}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/TaskEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty taskFrom ? 'TaskList' : taskFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Project</h:panelGroup>
+        </f:facet>
+    <div class="association" id="projectParent">
+
+        <h:outputText value="There is no project associated with this task."
+                   rendered="#{taskHome.instance.project == null}"/>
+
+        <rich:dataTable var="_project"
+                   value="#{taskHome.instance.project}"
+                rendered="#{taskHome.instance.project != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="projectTable">
+            <h:column>
+                <f:facet name="header">Project id</f:facet>
+                <h:outputText value="#{_project.projectId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Project name</f:facet>
+                <h:outputText value="#{_project.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                <h:outputText value="#{_project.baseStatus.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_project.startDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">End date</f:facet>
+                <h:outputText value="#{_project.endDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewproject"
+                     value="View"
+                      view="/Project.xhtml">
+                    <f:param name="projectProjectId"
+                           value="#{_project.projectId}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Costs</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="costsChildren">
+
+        <h:outputText value="There are no costs associated with this task."
+                   rendered="#{empty taskHome.costs}"/>
+
+        <rich:dataTable value="#{taskHome.costs}"
+                       var="_cost"
+                  rendered="#{not empty taskHome.costs}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="costsTable">
+            <rich:column sortBy="#{_cost.costId}">
+                <f:facet name="header">Cost id</f:facet>
+                <h:outputText value="#{_cost.costId}"/>
+            </rich:column>
+            <rich:column sortBy="#{_cost.name}">
+                <f:facet name="header">Cost name</f:facet>
+                <h:outputText value="#{_cost.name}"/>
+            </rich:column>
+            <rich:column sortBy="#{_cost.amountProposed}">
+                <f:facet name="header">Amount proposed</f:facet>
+                <h:outputText value="#{_cost.amountProposed}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_cost.totalHours}">
+                <f:facet name="header">Total hours</f:facet>
+                <h:outputText value="#{_cost.totalHours}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectcost"
+                     value="Select"
+                      view="/Cost.xhtml">
+                    <f:param name="costCostId"
+                            value="#{_cost.costId}"/>
+                    <f:param name="costFrom" value="Task"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add cost"
+                view="/CostEdit.xhtml">
+            <f:param name="taskTaskId"
+                    value="#{taskHome.instance.taskId}"/>
+            <f:param name="costFrom" value="Task"/>
+        </s:button>
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/onetomany.gif" style="vertical-align: middle; padding-right: 4px;"/>Execution details</h:panelGroup>
+        </f:facet>
+    <h:form styleClass="association" id="executedTasksChildren">
+
+        <h:outputText value="There are no detail of execution associated with this task."
+                   rendered="#{empty taskHome.executedTasks}"/>
+
+        <rich:dataTable value="#{taskHome.executedTasks}"
+                       var="_executedTask"
+                  rendered="#{not empty taskHome.executedTasks}"
+                rowClasses="rvgRowOne,rvgRowTwo"
+                        id="executedTasksTable">
+            <rich:column sortBy="#{_executedTask.executedTaskId}">
+                <f:facet name="header">Executed task id</f:facet>
+                <h:outputText value="#{_executedTask.executedTaskId}"/>
+            </rich:column>
+            <rich:column sortBy="#{_executedTask.totalHours}">
+                <f:facet name="header">Total hours</f:facet>
+                <h:outputText value="#{_executedTask.totalHours}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_executedTask.executedBy}">
+                <f:facet name="header">Executed by</f:facet>
+                <h:outputText value="#{_executedTask.userIdentity.name}"/>
+            </rich:column>
+            <rich:column sortBy="#{_executedTask.startDate}">
+                <f:facet name="header">Start date</f:facet>
+                <h:outputText value="#{_executedTask.startDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_executedTask.endDate}">
+                <f:facet name="header">End date</f:facet>
+                <h:outputText value="#{_executedTask.endDate}">
+                    <s:convertDateTime type="date" dateStyle="short"/>
+                </h:outputText>
+            </rich:column>
+            <rich:column sortBy="#{_executedTask.amount}">
+                <f:facet name="header">Amount</f:facet>
+                <h:outputText value="#{_executedTask.amount}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </rich:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <s:link id="selectexecutedTask"
+                     value="Select"
+                      view="/ExecutedTask.xhtml">
+                    <f:param name="executedTaskExecutedTaskId"
+                            value="#{_executedTask.executedTaskId}"/>
+                    <f:param name="executedTaskFrom" value="Task"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </h:form>
+
+    <div class="actionButtons">
+        <s:button
+               value="Add execution details"
+                view="/ExecutedTaskEdit.xhtml">
+            <f:param name="taskTaskId"
+                    value="#{taskHome.instance.taskId}"/>
+            <f:param name="executedTaskFrom" value="Task"/>
+        </s:button>
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

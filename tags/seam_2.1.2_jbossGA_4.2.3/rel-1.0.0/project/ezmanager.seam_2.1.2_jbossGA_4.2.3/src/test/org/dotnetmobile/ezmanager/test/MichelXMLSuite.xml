@@ -1,0 +1,7 @@
+<suite name="Suite" parallel="false">
+  <test name="Test">
+    <classes>
+      <class name="org.dotnetmobile.ezmanager.test.NewTest"/>
+    </classes>
+  </test>
+</suite>

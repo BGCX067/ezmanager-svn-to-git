@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd"
+      no-conversation-view-id="/UserRoleList.xhtml"
+      login-required="false">
+
+   <begin-conversation join="true" flush-mode="MANUAL"/>
+
+   <action execute="#{userRoleHome.wire}"/>
+
+   <param name="userRoleFrom"/>
+   <param name="userRoleRoleIdentityRoleIdentityId" value="#{userRoleHome.userRoleId.roleIdentityRoleIdentityId}"/>
+   <param name="userRoleUserIdentityUserIdentityId" value="#{userRoleHome.userRoleId.userIdentityUserIdentityId}"/>
+   <param name="roleIdentityFrom"/>
+   <param name="roleIdentityRoleIdentityId" value="#{roleIdentityHome.roleIdentityRoleIdentityId}"/>
+
+   <param name="userIdentityFrom"/>
+   <param name="userIdentityUserIdentityId" value="#{userIdentityHome.userIdentityUserIdentityId}"/>
+
+
+
+   <navigation from-action="#{userRoleHome.persist}">
+      <rule if-outcome="persisted">
+         <end-conversation/>
+         <redirect view-id="/UserRole.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{userRoleHome.update}">
+      <rule if-outcome="updated">
+         <end-conversation/>
+         <redirect view-id="/UserRole.xhtml"/>
+      </rule>
+   </navigation>
+
+   <navigation from-action="#{userRoleHome.remove}">
+      <rule if-outcome="removed">
+         <end-conversation/>
+         <redirect view-id="/UserRoleList.xhtml"/>
+      </rule>
+   </navigation>
+
+</page>

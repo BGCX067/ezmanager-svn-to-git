@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<domain version="2.0">
+	<object type="Domain" id="1C581B39-FE08-27E1-7067-45FBF287C8AE" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>CHAR_0_0_1</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="1" />
+		</parameters>
+		<logicaltype oid="LOGDT025" name="CHAR" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="71F2817A-8EE2-5AD8-F6E8-12D8D6225CF2" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>Date_0_0_0</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<logicaltype oid="LOGDT007" name="Date" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="D9941625-54E9-6506-BF70-D6356F5E4FC7" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_10_0_0</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="10" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="DE3AF2A6-F6E7-6859-2E74-CB31744D5836" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_11_2_0</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="11" />
+			<parameter name="scale" value="2" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="41E8612E-4152-9C86-3E42-2F73C1170D7A" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_4_2_0</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="4" />
+			<parameter name="scale" value="2" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="A3607CC1-FCAD-11D0-9F7C-88EA473F0740" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_5_0_0</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="5" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="7CCD32AE-5BC2-F942-7682-2C295BDAE0F4" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>NUMERIC_8_2_0</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="8" />
+			<parameter name="scale" value="2" />
+			<parameter name="size" value="0" />
+		</parameters>
+		<logicaltype oid="LOGDT019" name="NUMERIC" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="A942B1C4-E39A-4EBC-702A-9AF17B0459F6" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_100</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="100" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="A0A63EAD-5FBC-58E1-6E4B-949B8F610ECF" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_20</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:54</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="20" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="BD511F3A-AAB8-0AE4-6A13-77E51016B577" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_200</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:55</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:55</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="200" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+	<object type="Domain" id="85C11936-E2DE-E915-E27F-CEDE1E457A4F" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" visible_in_main_view="false" avt_sort_order="0" synonym="" dimension="" file="MyManager.scripts_Domains" use_default_color="true" background_color="null" foreground_color="null">
+		<name>VARCHAR_0_0_50</name>
+		<comment></comment>
+		<notes></notes>
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:55</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:49:55</timestamp>
+		</alter>
+		<properties>
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+		</properties>
+		<avt>
+			<beginvalue></beginvalue>
+			<endvalue></endvalue>
+			<description></description>
+		</avt>
+		<parameters>
+<!-- Default values for named parameters, passed on to logical datatypes -->
+
+			<parameter name="design.owner" value="ezManager" />
+			<parameter name="object.existsinrepository" value="true" />
+			<parameter name="precision" value="0" />
+			<parameter name="scale" value="0" />
+			<parameter name="size" value="50" />
+		</parameters>
+		<logicaltype oid="LOGDT024" name="VARCHAR" />
+		<engineering>
+			<relational_design id="6C64EA38-4016-5C85-86DC-FB81B0965823" should="true" />
+		</engineering>
+		<des_obj_version version="1.0" />
+	</object>
+</domain>

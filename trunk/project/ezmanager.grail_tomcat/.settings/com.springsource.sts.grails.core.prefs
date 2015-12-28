@@ -1,0 +1,16 @@
+#Sat Mar 19 15:34:13 CET 2011
+com.springsource.sts.grails.core.com.springsource.sts.grails.core.install.name=Grails 1.3.7
+com.springsource.sts.grails.core.source.attachment-grails-bootstrap-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-core-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-crud-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-docs-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-gorm-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-resources-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-scripts-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-spring-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-test-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-tomcat-plugin-1.0.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-grails-web-1.3.6.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/src/java
+com.springsource.sts.grails.core.source.attachment-junit-4.8.1.jar=/home/dotnetmobile/dev/springsource-2.5.2/grails-1.3.6/lib
+com.springsource.sts.grails.core.use.default.install=true
+eclipse.preferences.version=1

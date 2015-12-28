@@ -1,0 +1,186 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="project" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{projectHome.managed ? 'Edit' : 'Add'} Project</f:facet>
+
+
+            <s:decorate id="projectIdField" template="layout/edit.xhtml" rendered="#{projectHome.managed ? true : false}">
+                <ui:define name="label">Project id</ui:define>
+                <h:outputLabel id="projectId" value="#{projectHome.instance.projectId}"/>
+            </s:decorate>
+
+            <s:decorate id="nameField" template="layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                       required="true"
+                           size="100"
+                      maxlength="100"
+                          value="#{projectHome.instance.name}">
+                    <a:support event="onblur" reRender="nameField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="startDateField" template="layout/edit.xhtml">
+                <ui:define name="label">Start date</ui:define>
+                <rich:calendar id="startDate"
+                          value="#{projectHome.instance.startDate}" datePattern="MM/dd/yyyy" />
+            </s:decorate>
+
+
+            <s:decorate id="endDateField" template="layout/edit.xhtml">
+                <ui:define name="label">End date</ui:define>
+                <rich:calendar id="endDate"
+                          value="#{projectHome.instance.endDate}" datePattern="MM/dd/yyyy" />
+            </s:decorate>
+
+			<s:decorate id="statusField" template="layout/edit.xhtml">
+				<ui:define name="label">Status</ui:define>
+				<h:selectOneMenu id="statusSet" value="#{projectHome.instance.baseStatus}" required="true">
+					<s:selectItems var="_allBaseStatus" value="#{allBaseStatus}" noSelectionLabel="-- Select --"
+						label="#{_allBaseStatus.name}"/>
+					<s:convertEntity/>
+				</h:selectOneMenu>
+			</s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{projectHome.persist}"
+                       disabled="#{!projectHome.wired}"
+                       rendered="#{!projectHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{projectHome.update}"
+                       rendered="#{projectHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{projectHome.remove}"
+                      immediate="true"
+                       rendered="#{projectHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Project.xhtml"
+                rendered="#{projectHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty projectFrom ? 'ProjectList' : projectFrom}.xhtml"
+                rendered="#{!projectHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+    <rich:tab label="Tasks">
+        <h:form styleClass="association" id="tasksChildren">
+
+            <h:outputText value="There are no tasks associated with this project."
+                       rendered="#{empty projectHome.tasks}"/>
+
+            <rich:dataTable value="#{projectHome.tasks}"
+                           var="_task"
+                      rendered="#{not empty projectHome.tasks}"
+                    rowClasses="rvgRowOne,rvgRowTwo"
+                            id="tasksTable">
+                <rich:column sortBy="#{_task.taskId}">
+                    <f:facet name="header">Task id</f:facet>
+                    <h:outputText value="#{_task.taskId}"/>
+                </rich:column>
+                <rich:column sortBy="#{_task.name}">
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{_task.name}"/>
+                </rich:column>
+                <rich:column sortBy="#{_task.startDate}">
+				    <f:facet name="header">Start date</f:facet>
+    				<h:outputText value="#{_task.startDate}"/>
+				</rich:column>
+				<rich:column sortBy="#{_task.endDate}">
+    				<f:facet name="header">End date</f:facet>
+    				<h:outputText value="#{_task.endDate}"/>
+				</rich:column>
+                <rich:column sortBy="#{_task.position}">
+                    <f:facet name="header">Position</f:facet>
+                    <h:outputText value="#{_task.position}"/>
+                </rich:column>
+				<rich:column sortBy="#{_task.baseStatus.name}">
+					<f:facet name="header">Status</f:facet>
+					<h:outputText value="#{_task.baseStatus.name}"/>
+				</rich:column>
+				<h:column>
+	                <f:facet name="header">Action</f:facet>
+	                <s:link id="editTask"
+	                     value="Edit"
+	                      view="/TaskEdit.xhtml">
+	                    <f:param name="taskTaskId"
+	                            value="#{_task.taskId}"/>
+	                    <f:param name="taskFrom" value="ProjectEdit"/>
+	                </s:link>
+	            </h:column>
+            </rich:dataTable>
+
+        </h:form>
+
+        <f:subview rendered="#{projectHome.managed}" id="tasks">
+        <div class="actionButtons">
+            <s:button id="addtask"
+                   value="Add task"
+                    view="/TaskEdit.xhtml"
+             propagation="none">
+                 <f:param name="projectProjectId"
+                         value="#{projectHome.instance.projectId}"/>
+                 <f:param name="taskFrom" value="Project"/>
+            </s:button>
+        </div>
+        </f:subview>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

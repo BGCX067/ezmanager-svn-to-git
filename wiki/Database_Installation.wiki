@@ -1,0 +1,13 @@
+#summary database installation guide
+
+= How to create the database schema ezmanager =
+
+1. create the oracle user/password ezmanager/ezmanager and grant him the privileges connect and resource
+
+2. connect to the oracle database as the user ezmanager
+
+3. execute the main pl/sql script which creates all the oracle objects (tables, sequences, ...):
+
+http://code.google.com/p/ezmanager/source/browse/trunk/database/database.infrastructure/ezManager.main.sql
+
+Exemple: @./ezManager.main.sql

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd">
+
+   <param name="customerAddressFrom"/>
+   <param name="customerAddressAddressId" value="#{customerAddressHome.customerAddressId.addressId}"/>
+   <param name="customerAddressCustomerId" value="#{customerAddressHome.customerAddressId.customerId}"/>
+   <param name="addressFrom"/>
+   <param name="addressAddressId" value="#{addressHome.addressAddressId}"/>
+   <param name="streetFrom"/>
+   <param name="streetStreetId" value="#{streetHome.streetStreetId}"/>
+   <param name="cityFrom"/>
+   <param name="cityCityId" value="#{cityHome.cityCityId}"/>
+   <param name="stateFrom"/>
+   <param name="stateStateId" value="#{stateHome.stateStateId}"/>
+   <param name="countryFrom"/>
+   <param name="countryCountryId" value="#{countryHome.countryCountryId}"/>
+
+
+
+
+
+   <param name="customerFrom"/>
+   <param name="customerCustomerId" value="#{customerHome.customerCustomerId}"/>
+
+
+
+</page>

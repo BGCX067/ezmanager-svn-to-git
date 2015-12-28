@@ -1,0 +1,120 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+
+<ui:define name="body">
+
+    <h:form id="city" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{cityHome.managed ? 'Edit' : 'Add'} City</f:facet>
+
+
+            <s:decorate id="cityIdField" template="layout/edit.xhtml" rendered="#{cityHome.managed ? true : false}">
+                <ui:define name="label">City id</ui:define>
+                <h:outputLabel id="cityId" value="#{cityHome.instance.cityId}"/>
+            </s:decorate>
+
+            <s:decorate id="nameField" template="layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name"
+                       required="true"
+                           size="100"
+                      maxlength="100"
+                          value="#{cityHome.instance.name}">
+                </h:inputText>
+            </s:decorate>
+
+			<s:decorate id="countrySetField" template="layout/edit.xhtml">
+				<ui:define name="label">Country</ui:define>
+				<h:selectOneMenu id="countrySet" value="#{city.state.country}" required="true" valueChangeListener="#{cityHome.changeCountryMenu}" onchange="submit();" immediate="true" >
+					<s:selectItems var="_allCountries" value="#{allCountries}" noSelectionLabel="-- Select --"
+						label="#{_allCountries.name}"/>
+					<s:convertEntity/>
+					<a:support id="countrySetChange" event="onchange" reRender="countrySet,stateSet" ajaxSingle="true" bypassUpdates="false" action="#{StatesFromSelectedCountry.refresh()}"/>
+				</h:selectOneMenu>
+			</s:decorate>
+ 
+			<s:decorate id="stateSetField" template="layout/edit.xhtml">
+				<ui:define name="label">State</ui:define>
+				<a:outputPanel id="productSubType">
+					<h:selectOneMenu id="stateSet" value="#{city.state}" required="true" >
+						<s:selectItems var="_statesFromSelectedCountry" value="#{StatesFromSelectedCountry.resultList}" noSelectionLabel="-- Select --"
+							label="#{_statesFromSelectedCountry.name}"/>
+						<s:convertEntity/>
+					</h:selectOneMenu>
+				</a:outputPanel>
+				
+			</s:decorate>
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{cityHome.persist}"
+                       disabled="#{!cityHome.wired}"
+                       rendered="#{!cityHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{cityHome.update}"
+                       rendered="#{cityHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{cityHome.remove}"
+                      immediate="true"
+                       rendered="#{cityHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/City.xhtml"
+                rendered="#{cityHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty cityFrom ? 'CityList' : cityFrom}.xhtml"
+                rendered="#{!cityHome.managed}"/>
+
+        </div>
+    </h:form>
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<sub_view subview_name="Logical" id="28D4D767-C9F1-0919-BA46-E352F2847495" generator="null" visible="true" comment="" notes="" sv_type="main_view" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="">
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:51:00</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:51:00</timestamp>
+		</alter>
+		<main_display name="Logical" objectid="28D4D767-C9F1-0919-BA46-E352F2847495" notation="1" show_all_details="true" show_names_only="false" show_elements="false" show_datatype="false" show_keys="false" auto_route="true" box_in_box="false" comment="" notes="">
+			<alter type="created">
+				<user>dotnetmobile</user>
+				<timestamp>2010-01-10 11:49:13</timestamp>
+			</alter>
+			<alter type="changed">
+				<user>dotnetmobile</user>
+				<timestamp>2010-01-10 11:51:00</timestamp>
+			</alter>
+		</main_display>
+		<subordinate_displays />
+	</sub_view>
+</metadatadoc>

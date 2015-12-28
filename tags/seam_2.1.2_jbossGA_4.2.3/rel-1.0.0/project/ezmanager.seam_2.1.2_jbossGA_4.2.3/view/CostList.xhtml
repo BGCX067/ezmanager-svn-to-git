@@ -1,0 +1,204 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="costSearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="Cost Search Filter" switchType="ajax">
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name" value="#{costList.cost.name}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{costList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/CostList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">Cost Search Results (#{empty costList.resultList ? 0 : (costList.paginated ? costList.resultCount : costList.resultList.size)})</f:facet>
+    <div class="results" id="costList">
+
+    <h:outputText value="The cost search returned no results."
+               rendered="#{empty costList.resultList}"/>
+
+    <rich:dataTable id="costList"
+                var="_cost"
+              value="#{costList.resultList}"
+           rendered="#{not empty costList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{costList}"/>
+                    <ui:param name="propertyLabel" value="Cost id"/>
+                    <ui:param name="propertyPath" value="cost.costId"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_cost.costId}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{costList}"/>
+                    <ui:param name="propertyLabel" value="Cost name"/>
+                    <ui:param name="propertyPath" value="cost.name"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_cost.name}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{costList}"/>
+                    <ui:param name="propertyLabel" value="Task name"/>
+                    <ui:param name="propertyPath" value="cost.task.name"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_cost.task.name}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{costList}"/>
+                    <ui:param name="propertyLabel" value="Amount proposed"/>
+                    <ui:param name="propertyPath" value="cost.amountProposed"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_cost.amountProposed}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{costList}"/>
+                    <ui:param name="propertyLabel" value="Total hours"/>
+                    <ui:param name="propertyPath" value="cost.totalHours"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_cost.totalHours}">
+                <f:convertNumber/>
+            </h:outputText>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{costList}"/>
+                    <ui:param name="propertyLabel" value="Vat name"/>
+                    <ui:param name="propertyPath" value="cost.baseVat.name"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_cost.baseVat.name}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/#{empty from ? 'Cost' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="costViewId">
+                <f:param name="costCostId"
+                        value="#{_cost.costId}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/CostEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="costEdit"
+                rendered="#{empty from}">
+                <f:param name="costCostId"
+                        value="#{_cost.costId}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/CostList.xhtml"
+            rendered="#{costList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/CostList.xhtml"
+            rendered="#{costList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{costList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/CostList.xhtml"
+            rendered="#{costList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{costList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/CostList.xhtml"
+            rendered="#{costList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{costList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/CostEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create cost">
+            <f:param name="costCostId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

@@ -1,0 +1,151 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <rich:panel>
+        <f:facet name="header">User role Details</f:facet>
+
+        <s:decorate id="roleIdentityRoleIdentityId" template="layout/display.xhtml">
+            <ui:define name="label">Role identity role identity id</ui:define>
+            <h:outputText value="#{userRoleHome.instance.id.roleIdentityRoleIdentityId}"/>
+        </s:decorate>
+        <s:decorate id="userIdentityUserIdentityId" template="layout/display.xhtml">
+            <ui:define name="label">User identity user identity id</ui:define>
+            <h:outputText value="#{userRoleHome.instance.id.userIdentityUserIdentityId}"/>
+        </s:decorate>
+
+        <div style="clear:both"/>
+
+    </rich:panel>
+
+    <div class="actionButtons">
+
+        <s:button view="/UserRoleEdit.xhtml"
+                    id="edit"
+                 value="Edit"/>
+
+        <s:button view="/#{empty userRoleFrom ? 'UserRoleList' : userRoleFrom}.xhtml"
+                    id="done"
+                 value="Done"/>
+
+    </div>
+
+    <rich:tabPanel switchType="ajax">
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>Role identity</h:panelGroup>
+        </f:facet>
+    <div class="association" id="roleIdentityParent">
+
+        <h:outputText value="There is no roleIdentity associated with this userRole."
+                   rendered="#{userRoleHome.instance.roleIdentity == null}"/>
+
+        <rich:dataTable var="_roleIdentity"
+                   value="#{userRoleHome.instance.roleIdentity}"
+                rendered="#{userRoleHome.instance.roleIdentity != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="roleIdentityTable">
+            <h:column>
+                <f:facet name="header">Role identity id</f:facet>
+                <h:outputText value="#{_roleIdentity.roleIdentityId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_roleIdentity.name}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewroleIdentity"
+                     value="View"
+                      view="/RoleIdentity.xhtml">
+                    <f:param name="roleIdentityRoleIdentityId"
+                           value="#{_roleIdentity.roleIdentityId}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab>
+        <f:facet name="label">
+            <h:panelGroup><h:graphicImage value="/img/manytoone.gif" style="vertical-align: middle; padding-right: 4px;"/>User identity</h:panelGroup>
+        </f:facet>
+    <div class="association" id="userIdentityParent">
+
+        <h:outputText value="There is no userIdentity associated with this userRole."
+                   rendered="#{userRoleHome.instance.userIdentity == null}"/>
+
+        <rich:dataTable var="_userIdentity"
+                   value="#{userRoleHome.instance.userIdentity}"
+                rendered="#{userRoleHome.instance.userIdentity != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="userIdentityTable">
+            <h:column>
+                <f:facet name="header">User identity id</f:facet>
+                <h:outputText value="#{_userIdentity.userIdentityId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_userIdentity.id}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Is active</f:facet>
+                <h:outputText value="#{_userIdentity.isActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_userIdentity.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Password</f:facet>
+                <h:outputText value="#{_userIdentity.password}"/>
+            </h:column>
+            <h:column styleClass="action">
+                <f:facet name="header">Action</f:facet>
+                <s:link id="viewuserIdentity"
+                     value="View"
+                      view="/UserIdentity.xhtml">
+                    <f:param name="userIdentityUserIdentityId"
+                           value="#{_userIdentity.userIdentityId}"/>
+                </s:link>
+            </h:column>
+        </rich:dataTable>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

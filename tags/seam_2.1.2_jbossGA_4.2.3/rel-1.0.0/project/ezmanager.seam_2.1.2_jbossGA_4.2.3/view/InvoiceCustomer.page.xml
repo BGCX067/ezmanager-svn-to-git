@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd">
+
+   <param name="invoiceCustomerFrom"/>
+   <param name="invoiceCustomerCustomerId" value="#{invoiceCustomerHome.invoiceCustomerId.customerId}"/>
+   <param name="invoiceCustomerInvoiceId" value="#{invoiceCustomerHome.invoiceCustomerId.invoiceId}"/>
+   <param name="customerFrom"/>
+   <param name="customerCustomerId" value="#{customerHome.customerCustomerId}"/>
+
+   <param name="invoiceFrom"/>
+   <param name="invoiceInvoiceId" value="#{invoiceHome.invoiceInvoiceId}"/>
+   <param name="executedTaskFrom"/>
+   <param name="executedTaskExecutedTaskId" value="#{executedTaskHome.executedTaskExecutedTaskId}"/>
+   <param name="taskFrom"/>
+   <param name="taskTaskId" value="#{taskHome.taskTaskId}"/>
+   <param name="baseStatusFrom"/>
+   <param name="baseStatusStatusId" value="#{baseStatusHome.baseStatusStatusId}"/>
+
+   <param name="projectFrom"/>
+   <param name="projectProjectId" value="#{projectHome.projectProjectId}"/>
+
+
+   <param name="userIdentityFrom"/>
+   <param name="userIdentityUserIdentityId" value="#{userIdentityHome.userIdentityUserIdentityId}"/>
+
+
+
+
+
+</page>

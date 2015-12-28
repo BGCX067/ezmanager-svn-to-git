@@ -1,0 +1,11 @@
+<suite name="ezmanager-test">
+  <test verbose="2" name="org.dotnetmobile.ezmanager.test.BaseStatusListPageTest" annotations="JDK">
+    <classes>
+      <class name="org.dotnetmobile.ezmanager.test.BaseStatusListPageTest">
+        <methods>
+          <include name="testConnection"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>

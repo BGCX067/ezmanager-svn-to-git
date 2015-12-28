@@ -1,0 +1,191 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="customerAddress" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{customerAddressHome.managed ? 'Edit' : 'Add'} Customer address</f:facet>
+
+
+            <s:decorate id="addressIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Address id</ui:define>
+                <h:inputText id="addressId"
+                       required="true"
+                       disabled="#{customerAddressHome.managed}"
+                          value="#{customerAddressHome.instance.id.addressId}">
+                    <a:support event="onblur" reRender="addressIdField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+            <s:decorate id="customerIdField" template="layout/edit.xhtml">
+                <ui:define name="label">Customer id</ui:define>
+                <h:inputText id="customerId"
+                       required="true"
+                       disabled="#{customerAddressHome.managed}"
+                          value="#{customerAddressHome.instance.id.customerId}">
+                    <a:support event="onblur" reRender="customerIdField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{customerAddressHome.persist}"
+                       disabled="#{!customerAddressHome.wired}"
+                       rendered="#{!customerAddressHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{customerAddressHome.update}"
+                       rendered="#{customerAddressHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{customerAddressHome.remove}"
+                      immediate="true"
+                       rendered="#{customerAddressHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/CustomerAddress.xhtml"
+                rendered="#{customerAddressHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty customerAddressFrom ? 'CustomerAddressList' : customerAddressFrom}.xhtml"
+                rendered="#{!customerAddressHome.managed}"/>
+
+        </div>
+    </h:form>
+
+<rich:tabPanel switchType="ajax">
+
+    <rich:tab label="Address *" labelClass="required">
+    <div class="association" id="addressParent">
+
+        <h:outputText value="There is no address associated with this customerAddress."
+                   rendered="#{customerAddressHome.instance.address == null}"/>
+
+        <rich:dataTable var="_address"
+                   value="#{customerAddressHome.instance.address}"
+                rendered="#{customerAddressHome.instance.address != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="addressTable">
+            <h:column>
+                <f:facet name="header">Address id</f:facet>
+                <h:outputText value="#{_address.addressId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">B active</f:facet>
+                <h:outputText value="#{_address.BActive}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Remark</f:facet>
+                <h:outputText value="#{_address.remark}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Street street id</f:facet>
+                <h:outputText value="#{_address.street.streetId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Street number</f:facet>
+                <h:outputText value="#{_address.streetNumber}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Zip</f:facet>
+                <h:outputText value="#{_address.zip}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{customerAddressHome.instance.address != null ? 'changeParent' : 'selectParent'}" value="#{customerAddressHome.instance.address != null ? 'Change' : 'Select'} address"
+                       view="/AddressList.xhtml">
+                <f:param name="from" value="CustomerAddressEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+
+    <rich:tab label="Customer *" labelClass="required">
+    <div class="association" id="customerParent">
+
+        <h:outputText value="There is no customer associated with this customerAddress."
+                   rendered="#{customerAddressHome.instance.customer == null}"/>
+
+        <rich:dataTable var="_customer"
+                   value="#{customerAddressHome.instance.customer}"
+                rendered="#{customerAddressHome.instance.customer != null}"
+              rowClasses="rvgRowOne,rvgRowTwo"
+                      id="customerTable">
+            <h:column>
+                <f:facet name="header">Customer id</f:facet>
+                <h:outputText value="#{_customer.customerId}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{_customer.id}">
+                    <f:convertNumber/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{_customer.name}"/>
+            </h:column>
+        </rich:dataTable>
+
+        <div class="actionButtons">
+            <s:button id="#{customerAddressHome.instance.customer != null ? 'changeParent' : 'selectParent'}" value="#{customerAddressHome.instance.customer != null ? 'Change' : 'Select'} customer"
+                       view="/CustomerList.xhtml">
+                <f:param name="from" value="CustomerAddressEdit"/>
+            </s:button>
+        </div>
+
+    </div>
+    </rich:tab>
+</rich:tabPanel>
+</ui:define>
+
+</ui:composition>

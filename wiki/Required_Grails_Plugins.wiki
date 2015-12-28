@@ -1,0 +1,13 @@
+Required Grails Plugins for EzManager
+
+= Introduction =
+
+Before compiling EzManager, some Grails plugins are required.
+You can find them at http://www.grails.org/plugins/
+
+
+= Details =
+
+  * *jQuery Plugin*: http://www.grails.org/plugin/jquery
+  * *jQuery-UI Plugin*: http://www.grails.org/plugin/jquery-ui
+  

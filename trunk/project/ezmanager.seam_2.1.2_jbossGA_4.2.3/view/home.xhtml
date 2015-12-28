@@ -1,0 +1,57 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+    <ui:define name="body">
+
+        <h1>Welcome to EzManager!</h1>
+        <rich:panel>
+            <h:panelGrid columns="2">
+                <h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/>
+                <s:div styleClass="info">
+                    <p><strong>Your seam-gen project is deployed!</strong> Here are some of the features this project provides:</p>
+                    <ul class="bullets">
+                        <li>Ant build script</li>
+                        <li>Deployment to JBoss AS (EAR or WAR)</li>
+                        <li>Development and production profiles</li>
+                        <li>Integration testing using TestNG and Embedded JBoss</li>
+                        <li>JavaBean or EJB 3.0 Seam components</li>
+                        <li>JPA entity classes</li>
+                        <li>A configurable DataSource and JPA EntityManager</li>
+                        <li>Templated Facelets views</li>
+                        <li>RichFaces panels and tables</li>
+                        <li>Default CSS stylesheet</li>
+                        <li>Internationalization support</li>
+                    </ul>
+                </s:div>
+            </h:panelGrid>
+        </rich:panel>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.com/products/seam/components"
+            xmlns:core="http://jboss.com/products/seam/core"
+            xmlns:persistence="http://jboss.com/products/seam/persistence"
+            xmlns:drools="http://jboss.com/products/seam/drools"
+            xmlns:bpm="http://jboss.com/products/seam/bpm"
+            xmlns:security="http://jboss.com/products/seam/security"
+            xmlns:framework="http://jboss.com/products/seam/framework"
+            xmlns:mail="http://jboss.com/products/seam/mail"
+            xmlns:web="http://jboss.com/products/seam/web"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation=
+                "http://jboss.com/products/seam/core http://jboss.com/products/seam/core-2.1.xsd
+                 http://jboss.com/products/seam/persistence http://jboss.com/products/seam/persistence-2.1.xsd
+                 http://jboss.com/products/seam/drools http://jboss.com/products/seam/drools-2.1.xsd
+                 http://jboss.com/products/seam/bpm http://jboss.com/products/seam/bpm-2.1.xsd
+                 http://jboss.com/products/seam/security http://jboss.com/products/seam/security-2.1.xsd
+                 http://jboss.com/products/seam/mail http://jboss.com/products/seam/mail-2.1.xsd
+                 http://jboss.com/products/seam/framework http://jboss.com/products/seam/framework-2.1.xsd
+                 http://jboss.com/products/seam/web http://jboss.com/products/seam/web-2.1.xsd
+                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.1.xsd">
+
+   <core:init debug="true" jndi-pattern="@jndiPattern@"/>
+
+   <core:manager concurrent-request-timeout="500"
+                 conversation-timeout="120000"
+                 conversation-id-parameter="cid"
+                 parent-conversation-id-parameter="pid"/>
+
+   <!-- Make sure this URL pattern is the same as that used by the Faces Servlet -->
+   <web:hot-deploy-filter url-pattern="*.seam"/>
+ 
+   <persistence:entity-manager-factory name="entityManagerFactory"
+                      persistence-unit-name="ezmanager"/>
+
+   <persistence:managed-persistence-context name="entityManager" auto-create="true"
+                          entity-manager-factory="#{entityManagerFactory}"/>
+
+   <drools:rule-base name="securityRules">
+      <drools:rule-files><value>/security.drl</value></drools:rule-files>
+   </drools:rule-base>
+
+   <security:rule-based-permission-resolver security-rules="#{securityRules}"/>
+
+<!--   <security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true"/> -->
+   <security:identity authenticate-method="#{identityController.checkIdentity}" remember-me="true"/>
+
+   <event type="org.jboss.seam.security.notLoggedIn">
+      <action execute="#{redirect.captureCurrentView}"/>
+   </event>
+   <event type="org.jboss.seam.security.loginSuccessful">
+      <action execute="#{redirect.returnToCapturedView}"/>
+   </event>
+
+   <mail:mail-session host="localhost" port="25"/>
+
+   <!-- For use with jBPM pageflow or process management -->
+   <!--
+   <bpm:jbpm>
+      <bpm:process-definitions></bpm:process-definitions>
+      <bpm:pageflow-definitions></bpm:pageflow-definitions>
+   </bpm:jbpm>
+   -->
+
+   <framework:entity-query name="stateListQuery"
+      ejbql="select s from State s order by s.name" >
+      <framework:hints>
+         <key>org.hibernate.comment</key>
+         <value>Query for states as options on CityEdit.xhtml</value>
+      </framework:hints>
+   </framework:entity-query>
+   <factory name="stateLists" value="#{stateListQuery.resultList}" scope="conversation"/>
+
+   <framework:entity-query name="allCountriesQuery"
+      ejbql="select c from Country c order by c.name" >
+      <framework:hints>
+         <key>org.hibernate.comment</key>
+         <value>Query for countries as options on StateEdit.xhtml and CityEdit.xhtml</value>
+      </framework:hints>
+   </framework:entity-query>
+   <factory name="allCountries" value="#{allCountriesQuery.resultList}" scope="conversation"/>
+
+   <framework:entity-query name="allBaseStatusQuery"
+      ejbql="select s from BaseStatus s order by s.name" >
+      <framework:hints>
+         <key>org.hibernate.comment</key>
+         <value>Query for status as options on ProjectEdit.xhtml</value>
+      </framework:hints>
+   </framework:entity-query>
+   <factory name="allBaseStatus" value="#{allBaseStatusQuery.resultList}" scope="conversation"/>
+
+   <framework:entity-query name="allBaseVatsQuery"
+      ejbql="select v from BaseVat v order by v.name" >
+      <framework:hints>
+         <key>org.hibernate.comment</key>
+         <value>Query for vats as options on CostEdit.xhtml</value>
+      </framework:hints>
+   </framework:entity-query>
+   <factory name="allBaseVats" value="#{allBaseVatsQuery.resultList}" scope="conversation"/>
+
+   <framework:entity-query name="allCurrenciesQuery"
+      ejbql="select c from BaseCurrency c order by c.name" >
+      <framework:hints>
+         <key>org.hibernate.comment</key>
+         <value>Query for currencies as options on BaseVatEdit.xhtml</value>
+      </framework:hints>
+   </framework:entity-query>
+   <factory name="allCurrencies" value="#{allCurrenciesQuery.resultList}" scope="conversation"/>
+
+   <framework:entity-query name="allUsersQuery"
+      ejbql="select u from UserIdentity u order by u.name" >
+      <framework:hints>
+         <key>org.hibernate.comment</key>
+         <value>Query for users as options on ExecutedTaskEdit.xhtml</value>
+      </framework:hints>
+   </framework:entity-query>
+   <factory name="allUsers" value="#{allUsersQuery.resultList}" scope="conversation"/>
+
+
+   <component name="searchCountry" class="org.dotnetmobile.ezmanager.entity.Country" scope="conversation"/>
+   
+   <component name="searchState" class="org.dotnetmobile.ezmanager.entity.State" scope="conversation"/>
+   
+   <component name="searchCity" class="org.dotnetmobile.ezmanager.entity.City" scope="conversation"/>
+   
+   <component name="searchStreet" class="org.dotnetmobile.ezmanager.entity.Street" scope="conversation"/>
+   
+   <component name="searchAddress" class="org.dotnetmobile.ezmanager.entity.Address" scope="conversation"/>
+
+	<!-- passwordManager | generic-style component *definition* -->
+	<!-- 	
+   		<component name="passwordManager" class="org.dotnetmobile.ezmanager.authentication.PasswordManager" scope="event"/>
+    -->
+    
+   <!-- passwordManager | generic-style component *configuration* -->
+   <component name="passwordManager">
+      <property name="digestAlgorithm">SHA-1</property>
+      <property name="charset">UTF-8</property>
+   </component>
+   
+   <!-- passwordManager | partial namespace-style component *configuration* -->
+   <!--
+   <component name="passwordManager">
+      <digestAlgorithm>SHA-1</digestAlgorithm>
+      <charset>UTF-8</charset>
+   </component>
+   -->
+
+ </components>

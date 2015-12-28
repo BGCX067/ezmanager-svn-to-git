@@ -1,0 +1,175 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="userIdentitySearch" styleClass="edit">
+
+        <rich:simpleTogglePanel label="UserIdentity Search Filter" switchType="ajax">
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputText id="name" value="#{userIdentityList.userIdentity.name}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Password</ui:define>
+                <h:inputText id="password" value="#{userIdentityList.userIdentity.password}"/>
+            </s:decorate>
+
+            <s:decorate template="layout/display.xhtml">
+                <ui:define name="label">Match</ui:define>
+                <h:selectOneRadio id="logic" value="#{userIdentityList.restrictionLogicOperator}" styleClass="radio">
+                    <f:selectItem itemLabel="All" itemValue="and"/>
+                    <f:selectItem itemLabel="Any" itemValue="or"/>
+                </h:selectOneRadio>
+            </s:decorate>
+
+        </rich:simpleTogglePanel>
+
+        <div class="actionButtons">
+            <h:commandButton id="search" value="Search" action="/UserIdentityList.xhtml"/>
+            <s:button id="reset" value="Reset" includePageParams="false"/>
+        </div>
+
+    </h:form>
+
+    <rich:panel>
+        <f:facet name="header">User Search Results (#{empty userIdentityList.resultList ? 0 : (userIdentityList.paginated ? userIdentityList.resultCount : userIdentityList.resultList.size)})</f:facet>
+    <div class="results" id="userIdentityList">
+
+    <h:outputText value="The userIdentity search returned no results."
+               rendered="#{empty userIdentityList.resultList}"/>
+
+    <rich:dataTable id="userIdentityList"
+                var="_userIdentity"
+              value="#{userIdentityList.resultList}"
+           rendered="#{not empty userIdentityList.resultList}">
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{userIdentityList}"/>
+                    <ui:param name="propertyLabel" value="User identity id"/>
+                    <ui:param name="propertyPath" value="userIdentity.userIdentityId"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_userIdentity.userIdentityId}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{userIdentityList}"/>
+                    <ui:param name="propertyLabel" value="Name"/>
+                    <ui:param name="propertyPath" value="userIdentity.name"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_userIdentity.name}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <ui:include src="layout/sort.xhtml">
+                    <ui:param name="entityList" value="#{userIdentityList}"/>
+                    <ui:param name="propertyLabel" value="Is active"/>
+                    <ui:param name="propertyPath" value="userIdentity.isActive"/>
+                </ui:include>
+            </f:facet>
+            <h:outputText value="#{_userIdentity.isActive=='1' ? 'yes' : 'no'}"/>
+        </h:column>
+        <rich:column styleClass="action">
+            <f:facet name="header">Action</f:facet>
+            <s:link view="/#{empty from ? 'UserIdentity' : from}.xhtml"
+                   value="#{empty from ? 'View' : 'Select'}"
+             propagation="#{empty from ? 'none' : 'default'}"
+                      id="userIdentityViewId">
+                <f:param name="userIdentityUserIdentityId"
+                        value="#{_userIdentity.userIdentityId}"/>
+            </s:link>
+            #{' '}
+            <s:link view="/UserIdentityEdit.xhtml"
+                   value="Edit"
+             propagation="none"
+                      id="userIdentityEdit"
+                rendered="#{empty from}">
+                <f:param name="userIdentityUserIdentityId"
+                        value="#{_userIdentity.userIdentityId}"/>
+            </s:link>
+        </rich:column>
+    </rich:dataTable>
+
+    </div>
+    </rich:panel>
+
+    <div class="tableControl">
+
+        <s:link view="/UserIdentityList.xhtml"
+            rendered="#{userIdentityList.previousExists}"
+               value="#{messages.left}#{messages.left} First Page"
+                  id="firstPage">
+          <f:param name="firstResult" value="0"/>
+        </s:link>
+
+        <s:link view="/UserIdentityList.xhtml"
+            rendered="#{userIdentityList.previousExists}"
+               value="#{messages.left} Previous Page"
+                  id="previousPage">
+            <f:param name="firstResult"
+                    value="#{userIdentityList.previousFirstResult}"/>
+        </s:link>
+
+        <s:link view="/UserIdentityList.xhtml"
+            rendered="#{userIdentityList.nextExists}"
+               value="Next Page #{messages.right}"
+                  id="nextPage">
+            <f:param name="firstResult"
+                    value="#{userIdentityList.nextFirstResult}"/>
+        </s:link>
+
+        <s:link view="/UserIdentityList.xhtml"
+            rendered="#{userIdentityList.nextExists}"
+               value="Last Page #{messages.right}#{messages.right}"
+                  id="lastPage">
+            <f:param name="firstResult"
+                    value="#{userIdentityList.lastFirstResult}"/>
+        </s:link>
+
+    </div>
+
+    <s:div styleClass="actionButtons" rendered="#{empty from}">
+        <s:button view="/UserIdentityEdit.xhtml"
+                    id="create"
+           propagation="none"
+                 value="Create User">
+            <f:param name="userIdentityUserIdentityId"/>
+        </s:button>
+    </s:div>
+
+</ui:define>
+
+</ui:composition>

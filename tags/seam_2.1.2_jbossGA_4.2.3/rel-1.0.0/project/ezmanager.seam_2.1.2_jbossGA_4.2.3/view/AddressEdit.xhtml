@@ -1,0 +1,168 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="address" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{addressHome.managed ? 'Edit' : 'Add'} Address</f:facet>
+
+
+            <s:decorate id="addressIdField" template="layout/edit.xhtml" rendered="#{addressHome.managed ? true : false}">
+                <ui:define name="label">Address id</ui:define>
+                <h:outputLabel id="addressId" value="#{addressHome.instance.addressId}"/>
+            </s:decorate>
+
+			<s:decorate id="streetField" template="layout/edit.xhtml">
+				<ui:define name="label">Street</ui:define>
+			    <div class="association" id="streetParent">
+			
+			        <h:outputText value="There is no street associated with this address."
+			                   rendered="#{addressHome.instance.street == null}"/>
+			
+			        <rich:dataTable var="_street"
+			                   value="#{addressHome.instance.street}"
+			                rendered="#{addressHome.instance.street != null}"
+			              rowClasses="rvgRowOne,rvgRowTwo"
+			                      id="streetTable">
+			            <h:column>
+			                <f:facet name="header">Street</f:facet>
+			                <h:outputText value="#{_street.name}"/>
+			            </h:column>
+			            <h:column>
+			                <f:facet name="header">City</f:facet>
+			                <h:outputText value="#{_street.city.name}"/>
+			            </h:column>
+			            <h:column>
+			                <f:facet name="header">State</f:facet>
+			                <h:outputText value="#{_street.city.state.name}"/>
+			            </h:column>
+			            <h:column>
+			                <f:facet name="header">Country</f:facet>
+			                <h:outputText value="#{_street.city.state.country.name}"/>
+			            </h:column>
+			        </rich:dataTable>
+			
+			        <div class="actionButtons">
+			            <s:button id="#{addressHome.instance.street != null ? 'changeParent' : 'selectParent'}" value="#{addressHome.instance.street != null ? 'Change' : 'Select'} street"
+			                       view="/StreetList.xhtml">
+			                <f:param name="from" value="AddressEdit"/>
+			            </s:button>
+			        </div>
+			
+			    </div>
+ 			</s:decorate>
+
+            <s:decorate id="streetNumberField" template="layout/edit.xhtml">
+                <ui:define name="label">Street number</ui:define>
+                <h:inputText id="streetNumber"
+                          value="#{addressHome.instance.streetNumber}">
+                    <a:support event="onblur" reRender="streetNumberField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="remarkField" template="layout/edit.xhtml">
+                <ui:define name="label">Remark</ui:define>
+                <h:inputTextarea id="remark"
+                               cols="80"
+                               rows="6"
+                              value="#{addressHome.instance.remark}"/>
+            </s:decorate>
+
+
+            <s:decorate id="zipField" template="layout/edit.xhtml">
+                <ui:define name="label">Zip</ui:define>
+                <h:inputText id="zip"
+                       required="true"
+                           size="20"
+                      maxlength="20"
+                          value="#{addressHome.instance.zip}">
+                    <a:support event="onblur" reRender="zipField" bypassUpdates="true" ajaxSingle="true"/>
+                </h:inputText>
+            </s:decorate>
+
+
+            <s:decorate id="BActiveField" template="layout/edit.xhtml">
+                <ui:define name="label">Is active</ui:define>
+                <h:selectOneMenu id="isActiveSet" value="#{addressHome.instance.BActive}" required="true" immediate="true" >
+                	<f:selectItem itemLabel="Yes" itemValue="1"/>
+                	<f:selectItem itemLabel="No" itemValue="0"/>
+                	<a:support event="onblur" reRender="isActiveSet" bypassUpdates="true" ajaxSingle="true"/>
+				</h:selectOneMenu>
+            </s:decorate>
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{addressHome.persist}"
+                       disabled="#{!addressHome.wired}"
+                       rendered="#{!addressHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{addressHome.update}"
+                       rendered="#{addressHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{addressHome.remove}"
+                      immediate="true"
+                       rendered="#{addressHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Address.xhtml"
+                rendered="#{addressHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty addressFrom ? 'AddressList' : addressFrom}.xhtml"
+                rendered="#{!addressHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

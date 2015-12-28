@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0">
+	<sub_view subview_name="Customer_R" id="9569B27A-DDC6-50A4-39C2-24FAB90A9765" generator="null" visible="true" comment="" notes="" sv_type="sub_view" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="">
+		<alter type="created">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:56:22</timestamp>
+		</alter>
+		<alter type="changed">
+			<user>dotnetmobile</user>
+			<timestamp>2010-01-10 11:56:35</timestamp>
+		</alter>
+		<main_display name="Customer_R" objectid="9569B27A-DDC6-50A4-39C2-24FAB90A9765" notation="1" show_all_details="true" show_names_only="false" show_elements="false" show_datatype="false" show_keys="false" auto_route="true" box_in_box="false" comment="" notes="">
+			<objectid role="represents" type="Table" oid="AA38AD63-F4CC-80F9-FE16-DEEC379C0B38" viewid="F7188889-A7D8-C9B8-154E-DA469D1E5749" tv_generator_id="null" viewnumber="0">
+				<graphical>
+					<parameter name="background_color" value="NULL" />
+					<parameter name="foreground_color" value="NULL" />
+					<parameter name="h" value="127.0" />
+					<parameter name="use_default_color" value="true" />
+					<parameter name="w" value="272.0" />
+					<parameter name="x" value="11.0" />
+					<parameter name="y" value="168.0" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="Table" oid="35AEA164-12E0-A580-F5A2-6837C7749BAD" viewid="8906D133-3E79-B7F8-CE12-130D5761F207" tv_generator_id="null" viewnumber="0">
+				<graphical>
+					<parameter name="background_color" value="NULL" />
+					<parameter name="foreground_color" value="NULL" />
+					<parameter name="h" value="71.0" />
+					<parameter name="use_default_color" value="true" />
+					<parameter name="w" value="272.0" />
+					<parameter name="x" value="360.0" />
+					<parameter name="y" value="128.0" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="Table" oid="C4AF0521-948D-E923-4EF5-EDECDB9B72C9" viewid="7CA57F67-9056-4F6C-775E-11C9D4C071EF" tv_generator_id="null" viewnumber="0">
+				<graphical>
+					<parameter name="background_color" value="NULL" />
+					<parameter name="foreground_color" value="NULL" />
+					<parameter name="h" value="71.0" />
+					<parameter name="use_default_color" value="true" />
+					<parameter name="w" value="272.0" />
+					<parameter name="x" value="394.0" />
+					<parameter name="y" value="272.0" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="Table" oid="E4C7A13F-EF21-F2F4-0A52-7B4583B6DEFD" viewid="FA3393CA-4E32-88AA-4699-56EDD4B58864" tv_generator_id="null" viewnumber="0">
+				<graphical>
+					<parameter name="background_color" value="NULL" />
+					<parameter name="foreground_color" value="NULL" />
+					<parameter name="h" value="71.0" />
+					<parameter name="use_default_color" value="true" />
+					<parameter name="w" value="272.0" />
+					<parameter name="x" value="405.0" />
+					<parameter name="y" value="395.0" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="Table" oid="284073B5-7941-ACFA-91CE-2217018E697B" viewid="3F1F31B6-92C1-E37F-475F-30A0BBD4D7ED" tv_generator_id="null" viewnumber="0">
+				<graphical>
+					<parameter name="background_color" value="NULL" />
+					<parameter name="foreground_color" value="NULL" />
+					<parameter name="h" value="113.0" />
+					<parameter name="use_default_color" value="true" />
+					<parameter name="w" value="272.0" />
+					<parameter name="x" value="400.0" />
+					<parameter name="y" value="511.0" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="FKIndexAssociation" oid="91D450CC-320A-B80D-4EB9-1D17B751D38F" source="AA38AD63-F4CC-80F9-FE16-DEEC379C0B38" target="AA38AD63-F4CC-80F9-FE16-DEEC379C0B38" viewid_source="F7188889-A7D8-C9B8-154E-DA469D1E5749" viewid_target="F7188889-A7D8-C9B8-154E-DA469D1E5749">
+				<points>
+					<point x_coordinate="147.0" y_coordinate="168.0" />
+					<point x_coordinate="298.0" y_coordinate="231.5" />
+					<point x_coordinate="298.0" y_coordinate="310.0" />
+					<point x_coordinate="147.0" y_coordinate="310.0" />
+					<point x_coordinate="147.0" y_coordinate="168.0" />
+				</points>
+				<labels>
+					<source x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<target x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<main_label x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+				</labels>
+				<graphical>
+					<parameter name="use_default_color" value="true" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="FKIndexAssociation" oid="6D31281F-E2D5-C4A5-BD61-B414D29F4025" source="AA38AD63-F4CC-80F9-FE16-DEEC379C0B38" target="35AEA164-12E0-A580-F5A2-6837C7749BAD" viewid_source="F7188889-A7D8-C9B8-154E-DA469D1E5749" viewid_target="8906D133-3E79-B7F8-CE12-130D5761F207">
+				<points>
+					<point x_coordinate="147.0" y_coordinate="168.0" />
+					<point x_coordinate="314.5" y_coordinate="238.5" />
+					<point x_coordinate="314.5" y_coordinate="170.5" />
+					<point x_coordinate="496.0" y_coordinate="128.0" />
+				</points>
+				<labels>
+					<source x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<target x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<main_label x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+				</labels>
+				<graphical>
+					<parameter name="use_default_color" value="true" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="FKIndexAssociation" oid="AEAFAEB7-3C80-59FE-B83A-37A483B517C7" source="C4AF0521-948D-E923-4EF5-EDECDB9B72C9" target="35AEA164-12E0-A580-F5A2-6837C7749BAD" viewid_source="7CA57F67-9056-4F6C-775E-11C9D4C071EF" viewid_target="8906D133-3E79-B7F8-CE12-130D5761F207">
+				<points>
+					<point x_coordinate="530.0" y_coordinate="272.0" />
+					<point x_coordinate="537.0" y_coordinate="228.5" />
+					<point x_coordinate="503.0" y_coordinate="228.5" />
+					<point x_coordinate="496.0" y_coordinate="128.0" />
+				</points>
+				<labels>
+					<source x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<target x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<main_label x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+				</labels>
+				<graphical>
+					<parameter name="use_default_color" value="true" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="FKIndexAssociation" oid="96A3E0AE-014B-8E72-655D-7A2120454BA0" source="C4AF0521-948D-E923-4EF5-EDECDB9B72C9" target="E4C7A13F-EF21-F2F4-0A52-7B4583B6DEFD" viewid_source="7CA57F67-9056-4F6C-775E-11C9D4C071EF" viewid_target="FA3393CA-4E32-88AA-4699-56EDD4B58864">
+				<points>
+					<point x_coordinate="530.0" y_coordinate="272.0" />
+					<point x_coordinate="537.0" y_coordinate="362.0" />
+					<point x_coordinate="548.0" y_coordinate="362.0" />
+					<point x_coordinate="541.0" y_coordinate="395.0" />
+				</points>
+				<labels>
+					<source x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<target x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<main_label x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+				</labels>
+				<graphical>
+					<parameter name="use_default_color" value="true" />
+				</graphical>
+			</objectid>
+			<objectid role="represents" type="FKIndexAssociation" oid="B9E47C5C-59E0-7C1C-BD56-CE4F1EB0480C" source="284073B5-7941-ACFA-91CE-2217018E697B" target="E4C7A13F-EF21-F2F4-0A52-7B4583B6DEFD" viewid_source="3F1F31B6-92C1-E37F-475F-30A0BBD4D7ED" viewid_target="FA3393CA-4E32-88AA-4699-56EDD4B58864">
+				<points>
+					<point x_coordinate="536.0" y_coordinate="511.0" />
+					<point x_coordinate="529.0" y_coordinate="516.5" />
+					<point x_coordinate="534.0" y_coordinate="516.5" />
+					<point x_coordinate="541.0" y_coordinate="395.0" />
+				</points>
+				<labels>
+					<source x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<target x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+					<main_label x_coordinate="-1.0" y_coordinate="-1.0" width="-1.0" height="-1.0" />
+				</labels>
+				<graphical>
+					<parameter name="use_default_color" value="true" />
+				</graphical>
+			</objectid>
+			<alter type="created">
+				<user>dotnetmobile</user>
+				<timestamp>2010-01-10 11:49:14</timestamp>
+			</alter>
+			<alter type="changed">
+				<user>dotnetmobile</user>
+				<timestamp>2010-01-10 11:56:22</timestamp>
+			</alter>
+		</main_display>
+		<subordinate_displays />
+	</sub_view>
+</metadatadoc>

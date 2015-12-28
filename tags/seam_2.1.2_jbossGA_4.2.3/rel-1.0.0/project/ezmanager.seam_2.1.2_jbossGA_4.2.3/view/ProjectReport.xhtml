@@ -1,0 +1,56 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<p:document xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://jboss.com/products/seam/pdf"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	title="#{project.name} ProjectReport"
+	orientation="portrait">
+	<p:font size="14">
+		<p:paragraph spacingAfter="6">#{project.name} information</p:paragraph>
+	</p:font>
+	<p:font size="8" color="darkgray">
+		<p:paragraph spacingAfter="6">Current status: #{project.baseStatus.name}</p:paragraph>
+	</p:font>
+	<p:font size="8" color="darkgray">
+		<p:paragraph spacingAfter="6">Begins the: #{project.startDate} and finishes the: #{project.endDate}</p:paragraph>
+	</p:font>
+
+	<p:table columns="4" headerRows="1" widthPercentage="100">
+		<p:font style="bold">
+			<p:cell verticalAlignment="bottom">Task</p:cell>
+			<p:cell verticalAlignment="bottom">Status</p:cell>
+			<p:cell verticalAlignment="bottom">Begin</p:cell>
+			<p:cell verticalAlignment="bottom">Finish</p:cell>
+		</p:font>
+		
+		<ui:repeat var="item" value="#{projectReport.tasks}">
+			<p:font size="8">
+				<p:cell>#{item.name}</p:cell>
+				<p:cell>#{item.baseStatus.name}</p:cell>
+				<p:cell>#{item.startDate}</p:cell>
+				<p:cell>#{item.endDate}</p:cell>
+				
+			</p:font>
+		</ui:repeat>
+	</p:table>	
+</p:document>

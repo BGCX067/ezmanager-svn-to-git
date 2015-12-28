@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns="http://jboss.com/products/seam/pages"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd">
+
+   <param name="userTaskFrom"/>
+   <param name="userTaskTaskTaskId" value="#{userTaskHome.userTaskId.taskTaskId}"/>
+   <param name="userTaskUserIdentityUserIdentityId" value="#{userTaskHome.userTaskId.userIdentityUserIdentityId}"/>
+   <param name="taskFrom"/>
+   <param name="taskTaskId" value="#{taskHome.taskTaskId}"/>
+   <param name="baseStatusFrom"/>
+   <param name="baseStatusStatusId" value="#{baseStatusHome.baseStatusStatusId}"/>
+
+   <param name="projectFrom"/>
+   <param name="projectProjectId" value="#{projectHome.projectProjectId}"/>
+
+
+   <param name="userIdentityFrom"/>
+   <param name="userIdentityUserIdentityId" value="#{userIdentityHome.userIdentityUserIdentityId}"/>
+
+
+
+</page>

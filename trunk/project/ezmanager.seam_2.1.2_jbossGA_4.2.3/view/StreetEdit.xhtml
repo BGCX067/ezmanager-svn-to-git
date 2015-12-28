@@ -1,0 +1,137 @@
+<!-- 	
+	<EzManager: Web application for activities follow up. As main features, you can create projects, then associate tasks and calculate their corresponding invoices. Each project is associated to one or more customers identified by their addressee>
+    Copyright (C) <2010>  <Michel Petrovic> <email: dotnetmobile@gmail.com>
+
+    Contributor(s): _____________________.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    template="layout/template.xhtml">
+
+<ui:define name="body">
+
+    <h:form id="street" styleClass="edit">
+
+        <rich:panel>
+            <f:facet name="header">#{streetHome.managed ? 'Edit' : 'Add'} Street</f:facet>
+
+            <s:decorate id="streetIdField" template="layout/edit.xhtml" rendered="#{streetHome.managed ? true : false}">
+                <ui:define name="label">Street id</ui:define>
+                <h:outputLabel id="streetId" value="#{streetHome.instance.streetId}"/>
+            </s:decorate>
+
+
+
+            <s:decorate id="nameField" template="layout/edit.xhtml">
+                <ui:define name="label">Name</ui:define>
+                <h:inputTextarea id="name"
+                               cols="80"
+                               rows="2"
+                           required="true"
+                              value="#{streetHome.instance.name}"/>
+            </s:decorate>
+
+			<s:decorate id="countrySetField" template="layout/edit.xhtml">
+				<ui:define name="label">Country</ui:define>
+				<h:selectOneMenu id="countrySet" value="#{mySelectedState.country}" required="true" valueChangeListener="#{streetHome.changeCountryMenu}" onchange="submit();" immediate="true">
+					<s:selectItems var="_allCountries" value="#{allCountries}" noSelectionLabel="-- Select --"
+						label="#{_allCountries.name}"/>
+					<s:convertEntity/>
+					<a:support id="countrySetChange" event="onchange" reRender="countrySet,stateSet" ajaxSingle="true" bypassUpdates="false" action="#{streetHome.refreshStates()}"/>
+				</h:selectOneMenu>
+			</s:decorate>
+
+			<s:decorate id="stateSetField" template="layout/edit.xhtml">
+				<ui:define name="label">State</ui:define>
+				<h:selectOneMenu id="stateSet" value="#{mySelectedState}" required="true" valueChangeListener="#{streetHome.changeStateMenu}" onchange="submit();" immediate="true">
+					<s:selectItems var="_allStatesFromCountryAssociatedToStreet" value="#{myStates}" noSelectionLabel="-- Select --"
+						label="#{_allStatesFromCountryAssociatedToStreet.name}"/>
+					<s:convertEntity/>
+					<a:support id="stateSetChange" event="onchange" reRender="stateSet,citySet" ajaxSingle="true" bypassUpdates="false" action="#{streetHome.refreshCities()}"/>
+				</h:selectOneMenu>
+			</s:decorate>
+
+			<s:decorate id="citySetField" template="layout/edit.xhtml">
+				<ui:define name="label">City</ui:define>
+				<h:selectOneMenu id="citySet" value="#{street.city}" required="true">
+					<s:selectItems var="_citiesFromSelectedState" value="#{myCities}" noSelectionLabel="-- Select --"
+						label="#{_citiesFromSelectedState.name}"/>
+					<s:convertEntity/>
+				</h:selectOneMenu>
+			</s:decorate>
+
+
+            <s:decorate id="remarkField" template="layout/edit.xhtml">
+                <ui:define name="label">Remark</ui:define>
+                <h:inputTextarea id="remark"
+                               cols="80"
+                               rows="6"
+                              value="#{streetHome.instance.remark}"/>
+            </s:decorate>
+
+
+            <div style="clear:both">
+                <span class="required">*</span>
+                required fields
+            </div>
+
+        </rich:panel>
+
+        <div class="actionButtons">
+
+            <h:commandButton id="save"
+                          value="Save"
+                         action="#{streetHome.persist}"
+                       disabled="#{!streetHome.wired}"
+                       rendered="#{!streetHome.managed}"/>
+
+            <h:commandButton id="update"
+                          value="Save"
+                         action="#{streetHome.update}"
+                       rendered="#{streetHome.managed}"/>
+
+            <h:commandButton id="delete"
+                          value="Delete"
+                         action="#{streetHome.remove}"
+                      immediate="true"
+                       rendered="#{streetHome.managed}"/>
+
+            <s:button id="cancelEdit"
+                   value="Cancel"
+             propagation="end"
+                    view="/Street.xhtml"
+                rendered="#{streetHome.managed}"/>
+
+            <s:button id="cancelAdd"
+                   value="Cancel"
+             propagation="end"
+                    view="/#{empty streetFrom ? 'StreetList' : streetFrom}.xhtml"
+                rendered="#{!streetHome.managed}"/>
+
+        </div>
+    </h:form>
+
+</ui:define>
+
+</ui:composition>

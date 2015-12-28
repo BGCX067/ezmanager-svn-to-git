@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadatadoc version="2.0" stdes_version="2.2">
+	<!-- Specific properties for physical objects of type: Structured Types -->
+
+	<object oid="47E390DE-0671-C4B1-8428-0F45CBEE18F8" type="SType" role="contains" marked_generate="true" />
+	<!-- Specific properties for physical objects of type: TypeElements -->
+
+	<!-- Specific properties for physical objects of type: Methods -->
+
+	<!-- Specific properties for physical objects of type: Method Parameters -->
+
+	<!-- Specific properties for physical objects of type: Collection Types -->
+
+		<!-- RDBMS objects of type: Databases -->
+
+		<!-- RDBMS objects of type: Tablespaces -->
+
+		<!-- RDBMS objects of type: Temp Tablespaces -->
+
+		<!-- RDBMS objects of type: Undo Tablespaces -->
+
+		<!-- RDBMS objects of type: DataFile -->
+
+		<!-- RDBMS objects of type: RLG -->
+
+		<!-- RDBMS objects of type: Users -->
+
+		<!-- RDBMS objects of type: QuotaItem -->
+
+	<!-- Specific properties for physical objects of type: Tables -->
+
+	<object oid="1AEF885B-BF78-6105-1CDC-62D4F65AACC8" type="Table" role="contains" marked_generate="true" />
+	<object oid="1C179039-A285-3F0B-D688-9EB093B585A4" type="Table" role="contains" marked_generate="true" />
+	<object oid="284073B5-7941-ACFA-91CE-2217018E697B" type="Table" role="contains" marked_generate="true" />
+	<object oid="2D3CD95B-D240-370F-15CB-CE814E8E2142" type="Table" role="contains" marked_generate="true" />
+	<object oid="35AEA164-12E0-A580-F5A2-6837C7749BAD" type="Table" role="contains" marked_generate="true" />
+	<object oid="67051B2E-A1E5-3AC2-08A1-91537358287C" type="Table" role="contains" marked_generate="true" />
+	<object oid="6CC7278B-83A2-BB4F-ABFE-411417ED1D0A" type="Table" role="contains" marked_generate="true" />
+	<object oid="7181BBE6-5C60-9A1C-55BF-666549C469C6" type="Table" role="contains" marked_generate="true" />
+	<object oid="8ED972E5-BF37-8416-48A1-AEEEBCC15BC7" type="Table" role="contains" marked_generate="true" />
+	<object oid="90A5F85B-8F13-56C4-6174-940EC694A7CE" type="Table" role="contains" marked_generate="true" />
+	<object oid="99A5BF18-379F-044B-0354-BF3C5DD8FA15" type="Table" role="contains" marked_generate="true" />
+	<object oid="AA38AD63-F4CC-80F9-FE16-DEEC379C0B38" type="Table" role="contains" marked_generate="true" />
+	<object oid="B05EE421-DA52-B0F0-ECF2-DDF4DC563E2A" type="Table" role="contains" marked_generate="true" />
+	<object oid="B64F2A4F-614D-EEA5-AFE4-F748D3DB5C74" type="Table" role="contains" marked_generate="true" />
+	<object oid="C4AF0521-948D-E923-4EF5-EDECDB9B72C9" type="Table" role="contains" marked_generate="true" />
+	<object oid="C5694400-9A95-BCF4-8F58-9896DA764D25" type="Table" role="contains" marked_generate="true" />
+	<object oid="CCB30F24-200B-AB4B-B4ED-27127A13D4C5" type="Table" role="contains" marked_generate="true" />
+	<object oid="D78D68AA-2DA3-B270-2541-7CAC3B252893" type="Table" role="contains" marked_generate="true" />
+	<object oid="E4C7A13F-EF21-F2F4-0A52-7B4583B6DEFD" type="Table" role="contains" marked_generate="true" />
+		<!-- RDBMS objects of type: External Tables -->
+
+		<!-- RDBMS objects of type: ExternCol -->
+
+		<!-- RDBMS objects of type: ListTemplatePart -->
+
+		<!-- RDBMS objects of type: Clusters -->
+
+		<!-- RDBMS objects of type: CI -->
+
+		<!-- RDBMS objects of type: Segment Templates -->
+
+		<!-- RDBMS objects of type: Rollback Segments -->
+
+		<!-- RDBMS objects of type: Snapshots -->
+
+		<!-- RDBMS objects of type: PL -->
+
+		<!-- RDBMS objects of type: Partition -->
+
+		<!-- RDBMS objects of type: LP -->
+
+		<!-- RDBMS objects of type: LS -->
+
+		<!-- RDBMS objects of type: HP -->
+
+		<!-- RDBMS objects of type: LobStorage -->
+
+		<!-- RDBMS objects of type: IHP -->
+
+		<!-- RDBMS objects of type: LobStorage -->
+
+		<!-- RDBMS objects of type: Roles -->
+
+	<!-- Specific properties for physical objects of type: Views -->
+
+		<!-- RDBMS objects of type: Sequences -->
+
+		<!-- RDBMS objects of type: Permissions -->
+
+		<!-- RDBMS objects of type: IGPL -->
+
+		<!-- RDBMS objects of type: IGP -->
+
+		<!-- RDBMS objects of type: CC -->
+
+		<!-- RDBMS objects of type: Synonyms -->
+
+		<!-- RDBMS objects of type: NNC -->
+
+		<!-- RDBMS objects of type: Directories -->
+
+		<!-- RDBMS objects of type: Trg -->
+
+		<!-- RDBMS objects of type: Stored Procedures -->
+
+		<!-- RDBMS objects of type: Level -->
+
+		<!-- RDBMS objects of type: Hierarchy -->
+
+		<!-- RDBMS objects of type: Attr -->
+
+		<!-- RDBMS objects of type: Dimensions -->
+
+		<!-- RDBMS objects of type: BJI -->
+
+		<!-- RDBMS objects of type: Contexts -->
+
+		<!-- RDBMS objects of type: Disk Groups -->
+
+		<!-- RDBMS objects of type: FG -->
+
+		<!-- RDBMS objects of type: ASM -->
+
+		<!-- RDBMS objects of type: LIP -->
+
+</metadatadoc>

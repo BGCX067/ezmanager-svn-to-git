@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<design version="2.0" id="6B996040-BDDB-C470-BF49-426E58834A7E">
+	<ref />
+	<type_substitutions />
+	<ext_sub_views_collection>
+		<sub_view subview_name="Logical" id="28D4D767-C9F1-0919-BA46-E352F2847495" sv_type="main_view" visible="true" rep_oid="null" rep_ovid="null" is_checkedout="false" checkedout_by="" />
+	</ext_sub_views_collection>
+	<documents />
+	<parties />
+	<naming_options>
+		<naming_option class_name="oracle.dbtools.crest.model.design.logical.Entity" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
+		<naming_option class_name="oracle.dbtools.crest.model.design.logical.Attribute" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
+		<naming_option class_name="oracle.dbtools.crest.model.design.logical.EntityView" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
+	</naming_options>
+</design>
